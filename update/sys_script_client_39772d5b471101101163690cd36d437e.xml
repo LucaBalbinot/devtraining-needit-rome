@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Visualizza solo le scelte necessarie che corrispondono al valore di tipo richiesto</description>
+        <field>u_request_type</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Legame Select</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (newValue === '') {
+      return;
+   }
+	
+	var whatneeded = g_form.getValue("u_what_needed");
+	//^prende il valore del campo selezionato
+	
+	g_form.clearOptions("u_what_needed");
+	//^pulisce le opzioni dei select del campo selezionato
+	
+	if (newValue == "hr") {
+		g_form.addOption("u_what_needed", "hr1", "Human Resource 1");
+		g_form.addOption("u_what_needed", "hr2", "Human Resource 2");
+		g_form.addOption("u_what_needed", "other", "Other");
+		//addOption ha tre valori: campo, condizione e il valore che devo inserire all'interno per sostituire le option della select in modo forzato
+	}
+	
+	else if (newValue == "facilities"){
+		g_form.addOption("u_what_needed", "facilities1", "facilities1");
+		g_form.addOption("u_what_needed", "facilities2", "facilities2");
+		g_form.addOption("u_what_needed", "other", "Other");	
+	}
+	
+	else if (newValue == "legal"){
+		g_form.addOption("u_what_needed", "legal1", "legal1");
+		g_form.addOption("u_what_needed", "legal2", "legal2");
+		g_form.addOption("u_what_needed", "other", "Other");	
+	}
+	
+	else if (isLoading && !g_form.isNewRecord()){
+		g_form.getValue("u_what_needed", whatneeded);
+	}
+		
+   //Commenti sul codice: creiamo una variabile e la popoliamo con il valore che tiene "u_what_whatneeded" (nome della tabella che ci interessa). Con la successiva g.form cancelliamo le opzioni di u_what_needed. I valori dentro questa tabella sono "hr", "facilities" e "legal"; pertanto aggiungo tramite il g_form l'opzione che varia sulla base di quale valore sia (se hr, facilities o legal). Tutto ciò risulta vero finché ho un nuovo valore. Nel caso in cui non avessi nuovi valori, valorizzalo con la variabile che preventivamente ho raccolto (riga 6): ovvero i valori tornano uguali, perché per un momento vengono cambiati negli IF.
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-02-01 08:55:35</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>39772d5b471101101163690cd36d437e</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Legame Select</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_client_39772d5b471101101163690cd36d437e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-02-01 09:45:27</sys_updated_on>
+        <table>x_58872_needit_needit</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>
