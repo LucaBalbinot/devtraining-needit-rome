@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58872_needit.CompletamentoEmail</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>Creazione di una script che completa le email tramite chiamata Ajax</description>
+        <name>CompletamentoEmail</name>
+        <script><![CDATA[var CompletamentoEmail = Class.create();
+CompletamentoEmail.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	getEmail: function() {
+	var utilizzoRecord = new GlideRecord("sys_user");
+	//^assegna alla variabile "utilizzoRecord" tutti i record presenti in "sys_user" (l'utente connesso)
+	utilizzoRercord.get(this.getParameter("sysparm_userID"));
+	//^dai record di "sys_user" prendimi tutti i parametre dell'utente ID connesso;
+	return utilizzoRecord.email + "";
+	//^stampami l'email specifica legata all'ID
+	
+},
+    type: 'CompletamentoEmail'
+	//^si riceve la tipologia che si possiede che risulta essere il nome stesso dello script. E' il modo che viene utilizzato per essere richiamato (completa lo script include). 
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-02-09 16:00:24</sys_created_on>
+        <sys_id>ba725c06476501101163690cd36d4358</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>CompletamentoEmail</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_include_ba725c06476501101163690cd36d4358</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-02-09 16:06:50</sys_updated_on>
+    </sys_script_include>
+</record_update>
